@@ -37,7 +37,13 @@ def clean_administrative_text(text: str) -> str:
     text = re.sub(r'[ \t]+', ' ', text)     # Gom nhiều dấu cách thành 1 dấu cách
     
     return text.strip()
-# text = clean_administrative_text(data)
+
+
+def sentence_segment(text: str) -> str:
+    patterns = r'(?<=[.:;])\s+'
+    sentences = re.split(patterns, text)
+    cleaned_sentences = '\n'.join([sent.strip() for sent in sentences if sent.strip()])
+    return cleaned_sentences
 
 def print_text(text: str) -> None:
     chunk_size = 2000
@@ -46,4 +52,4 @@ def print_text(text: str) -> None:
     return None
 text = read_pdf('data/raw/luat116-2025.pdf')
 text = clean_administrative_text(text)
-print_text(text)
+print_text(sentence_segment(text))

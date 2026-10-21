@@ -53,3 +53,4 @@ def print_text(text: str) -> None:
 text = read_pdf('data/raw/luat116-2025.pdf')
 text = clean_administrative_text(text)
 print_text(sentence_segment(text))
+print('hehe')
